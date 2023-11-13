@@ -24,9 +24,10 @@ const swaggerSpec = swaggerJsDocs(options);
 
 const app = express();
 app.use(express.json());
-app.use("/api", apiRouter);
-app.use(express.json());
 app.use(cors({ origin: "*" }));
+
+app.use("/api", apiRouter);
+
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.listen(config.PORT, () => {

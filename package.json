@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "nodemon index",
-    "build": "tsc",
+    "build": "",
     "serve": "node index"
   },
   "devDependencies": {
