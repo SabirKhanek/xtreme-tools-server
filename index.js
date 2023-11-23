@@ -13,10 +13,10 @@ const options = {
       version: "1.0.0",
     },
     servers: [
+      { url: `${config.HOST}/api` },
       {
         url: `http://localhost:${config.PORT}/api`,
       },
-      { url: `${config.HOST}/api` },
     ],
   },
   apis: ["./routes/*/*.js"],
