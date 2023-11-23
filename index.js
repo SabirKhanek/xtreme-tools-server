@@ -26,12 +26,12 @@ const swaggerSpec = swaggerJsDocs(options);
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
-
+app.use(express.static("public"));
 app.use("/api", apiRouter);
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.listen(config.PORT, () => {
-  console.log(`⚡ Server is live on: ${config.HOST}:${config.PORT}`);
-  console.log(`📄 Docs: ${config.HOST}:${config.PORT}/api-docs`);
+  console.log(`⚡ Server is live on: ${config.HOST}`);
+  console.log(`📄 Docs: ${config.HOST}/api-docs`);
 });
