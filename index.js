@@ -15,8 +15,8 @@ const options = {
     servers: [
       {
         url: `http://localhost:${config.PORT}/api`,
-        url: `${config.HOST}/api`
       },
+      { url: `${config.HOST}/api` },
     ],
   },
   apis: ["./routes/*/*.js"],

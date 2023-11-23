@@ -5,6 +5,6 @@ const router = Router();
 router.get("/", (req, res) => {
   res.send("api working");
 });
-router.use("/email_marketing", emailRouter);
+router.use("/email-marketing", emailRouter);
 
 module.exports.apiRouter = router;
