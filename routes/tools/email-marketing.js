@@ -1,17 +1,13 @@
 const { Router } = require("express");
-const nodemailer = require("nodemailer");
-const {
-  SMTPTesterRequestSchema,
-} = require("../../DTOs/requestDTOs/email_marketing");
 const { testSMTP } = require("../../controllers/email_marketing");
-var transport = nodemailer.createTransport({
-  host: "sandbox.smtp.mailtrap.io",
-  port: 2525,
-  auth: {
-    user: "04cf4735e70247",
-    pass: "********aac4",
-  },
-});
+// var transport = nodemailer.createTransport({
+//   host: "sandbox.smtp.mailtrap.io",
+//   port: 2525,
+//   auth: {
+//     user: "04cf4735e70247",
+//     pass: "********aac4",
+//   },
+// });
 const router = Router();
 
 /**

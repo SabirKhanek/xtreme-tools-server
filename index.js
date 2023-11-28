@@ -4,7 +4,7 @@ const cors = require("cors");
 const swaggerJsDocs = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 const { apiRouter } = require("./routes");
-
+require("./services/ai_tools");
 const options = {
   definition: {
     openapi: "3.0.0",
