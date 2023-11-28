@@ -7,7 +7,7 @@ const router = Router();
  * /ai/generate_outline:
  *   get:
  *     description: Generate a content outline based on the provided input
- *     tags: [AI Content Generation]
+ *     tags: [AI Tools]
  *     parameters:
  *       - in: query
  *         name: userInput
@@ -59,7 +59,7 @@ router.get(
  * /ai/write:
  *   get:
  *     description: Write content based on the given input
- *     tags: [AI Content Generation]
+ *     tags: [AI Tools]
  *     parameters:
  *       - in: query
  *         name: userInput
@@ -111,7 +111,7 @@ router.get(
  * /ai/rewrite:
  *   post:
  *     description: Rewrite the paragraph
- *     tags: [AI Content Generation]
+ *     tags: [AI Tools]
  *     requestBody:
  *         content:
  *           application/json:
