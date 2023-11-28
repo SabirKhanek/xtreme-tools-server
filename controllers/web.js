@@ -20,15 +20,16 @@ async function generateFavicon(req, res, next) {
       return res
         .status(400)
         .send({ success: false, reason: "No image provided" });
-
-    const zipName = `${new Date().getTime()}.zip`;
+    const is16x16 = req.query.only16 === "true";
+    const fileName = `${new Date().getTime()}.${is16x16 ? "ico" : "zip"}`;
     await service.generateFavicons(
       req.file.path,
-      `public/generated_favicons/${zipName}`
+      `public/generated_favicons/${fileName}`,
+      is16x16
     );
     res.send({
       success: true,
-      zipPath: `${config.HOST}/generated_favicons/${zipName}`,
+      zipPath: `${config.HOST}/generated_favicons/${fileName}`,
     });
   } catch (err) {
     console.log(err);

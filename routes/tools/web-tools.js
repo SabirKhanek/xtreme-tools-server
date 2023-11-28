@@ -32,6 +32,16 @@ let upload = multer({
  *   post:
  *     summary: Generate Favicon
  *     tags: [Web Tools]
+ *     parameters:
+ *       - in: query
+ *         name: only16
+ *         description: Should only be 16x16 file
+ *         required: false
+ *         schema:
+ *           type: string
+ *           enum:
+ *            - "true"
+ *            - "false"
  *     consumes:
  *       - multipart/form-data
  *     requestBody:

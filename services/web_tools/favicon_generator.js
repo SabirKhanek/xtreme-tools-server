@@ -22,6 +22,28 @@ class FaviconGenerator {
     }
   }
 
+  async create16x16(pngPath, outputIcoPath) {
+    try {
+      const tempDir = `./temp-${new Date().getTime()}`;
+      await fs.mkdir(tempDir);
+
+      const resizedPngPath = tempDir + "/" + `icon@$16x16.png`;
+      await this.resizeImage(pngPath, resizedPngPath, 16, 16);
+      await this.convertToIco(resizedPngPath, outputIcoPath);
+      try {
+        await fs.rm(tempDir, { recursive: true });
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error({
+        success: false,
+        reason: `Error creating ico file: ${error.message}`,
+      });
+    }
+  }
+
   async createZip(inputImagePath, outputZipPath) {
     const zip = new AdmZip();
     try {
