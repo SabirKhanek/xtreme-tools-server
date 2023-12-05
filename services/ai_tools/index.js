@@ -1,11 +1,12 @@
 const { getAIRewriterPrompt } = require("./ai_rewriter");
+const { getAITranslator } = require("./ai_translator");
 const { getAIWriterPrompt } = require("./ai_writer");
 const { openai } = require("./openai");
 const { getOutlineGeneratorPrompt } = require("./outline_generator");
 
 class AITools {
   /**
-   * @typedef {"outline_generator" | "ai_translator" | "ai_writer"|"ai_rewriter"} ToolID
+   * @typedef {"outline_generator" | "ai_translator" | "ai_writer"|"ai_rewriter"|"ai_translator"} ToolID
    * @param {ToolID} toolId
    * @param {string} userInput
    */
@@ -18,6 +19,8 @@ class AITools {
         return getAIWriterPrompt(userInput);
       case "ai_rewriter":
         return getAIRewriterPrompt(userInput);
+      case "ai_translator":
+        return getAITranslator(userInput);
       default:
         return [];
     }
@@ -42,7 +45,4 @@ class AITools {
   }
 }
 
-// new AITools().generateContent("ai_writer", "Ethereum Mixer").then((res) => {
-//   console.log(res);
-// });
 module.exports.AITools = AITools;
