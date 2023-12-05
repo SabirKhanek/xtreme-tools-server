@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "dev": "nodemon index",
+    "dev": "nodemon app",
     "build": "",
-    "serve": "node index"
+    "serve": "node app"
   },
   "devDependencies": {
     "@types/cors": "^2.8.16",
