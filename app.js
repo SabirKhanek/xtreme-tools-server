@@ -26,10 +26,18 @@ const swaggerSpec = swaggerJsDocs(options);
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
-app.use(express.static("public"));
 app.use("/api", apiRouter);
-
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+
+app.use(express.static("public"));
+app.get("*", (req, res, next) => {
+  if (req.url.startsWith("/api")) next(); // exclude api routes
+  try {
+    res.sendFile(require("path").join(__dirname, "public", "index.html"));
+  } catch (err) {
+    next(err);
+  }
+});
 
 app.listen(config.PORT, () => {
   console.log(`⚡ Server is live on: ${config.HOST}`);
