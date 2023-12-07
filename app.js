@@ -4,7 +4,6 @@ const cors = require("cors");
 const swaggerJsDocs = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 const { apiRouter } = require("./routes");
-const { User } = require("./db/sequelize");
 require("./services/ai_tools");
 const options = {
   definition: {
@@ -25,6 +24,8 @@ const options = {
 const swaggerSpec = swaggerJsDocs(options);
 
 const app = express();
+const standardizeResponse = require("./middlewares/standardizeResponse");
+app.use(standardizeResponse);
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 app.use("/api", apiRouter);
