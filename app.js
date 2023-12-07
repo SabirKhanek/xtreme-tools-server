@@ -4,6 +4,7 @@ const cors = require("cors");
 const swaggerJsDocs = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 const { apiRouter } = require("./routes");
+const { User } = require("./db/sequelize");
 require("./services/ai_tools");
 const options = {
   definition: {
