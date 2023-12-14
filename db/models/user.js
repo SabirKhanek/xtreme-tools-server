@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       password: { type: DataTypes.STRING, allowNull: false },
       verified: { type: DataTypes.BOOLEAN, defaultValue: false },
       profile_photo_slug: { type: DataTypes.STRING, allowNull: true },
+      user_plan: { type: DataTypes.STRING, defaultValue: "basic" },
     },
     {
       tableName: "user",

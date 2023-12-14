@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const { generateContent } = require("../../controllers/ai");
 const { AITranslatorSchame } = require("../../DTOs/requestDTOs/ai");
+const { validateToken } = require("../../middlewares/auth");
+const { trackUsage, incrementUsage } = require("../../middlewares/usage");
 const router = Router();
 
 /**
@@ -48,11 +50,14 @@ const router = Router();
  */
 router.get(
   "/generate_outline",
+  validateToken,
   (req, res, next) => {
     req.query.toolId = "outline_generator";
     next();
   },
-  generateContent
+  trackUsage,
+  generateContent,
+  incrementUsage
 );
 
 /**
@@ -100,11 +105,14 @@ router.get(
  */
 router.get(
   "/write",
+  validateToken,
   (req, res, next) => {
     req.query.toolId = "ai_writer";
     next();
   },
-  generateContent
+  trackUsage,
+  generateContent,
+  incrementUsage
 );
 
 /**
@@ -155,11 +163,14 @@ router.get(
  */
 router.post(
   "/rewrite",
+  validateToken,
   (req, res, next) => {
     req.body.toolId = "ai_rewriter";
     next();
   },
-  generateContent
+  trackUsage,
+  generateContent,
+  incrementUsage
 );
 
 /**
@@ -217,13 +228,16 @@ router.post(
 
 router.post(
   "/translate",
+  validateToken,
   (req, res, next) => {
     const { value, error } = AITranslatorSchame.validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     req.body = { userInput: JSON.stringify(value), toolId: "ai_translator" };
     next();
   },
-  generateContent
+  trackUsage,
+  generateContent,
+  incrementUsage
 );
 
 module.exports.aiRouter = router;

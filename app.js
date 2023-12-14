@@ -25,9 +25,23 @@ const swaggerSpec = swaggerJsDocs(options);
 
 const app = express();
 const standardizeResponse = require("./middlewares/standardizeResponse");
+const { UserService } = require("./services/user");
 app.use(standardizeResponse);
 app.use(express.json());
 app.use(cors({ origin: "*" }));
+
+app.get("/verify_user/:token", async (req, res, next) => {
+  try {
+    const token = req.params["token"];
+    const userService = new UserService();
+    const status = await userService.verifyToken(token);
+    if (status) res.redirect(`${config.HOST}/user_verified`);
+    else res.redirect(`${config.HOST}/verfication_failed`);
+  } catch (err) {
+    res.redirect(`${config.HOST}/verfication_failed`);
+  }
+});
+
 app.use("/api", apiRouter);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 

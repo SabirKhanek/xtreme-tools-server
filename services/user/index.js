@@ -1,6 +1,14 @@
-const { User } = require("../../db/sequelize");
+const { User, OTPToken } = require("../../db/sequelize");
 const { ErrorWithStatus } = require("../../utils/error");
 const _ = require("lodash");
+const crypto = require("crypto");
+const { HOST } = require("../../environments/config");
+const { sendMail } = require("../../utils/nodemailer/controllers/sendMail");
+const pug = require("pug");
+function generateCryptoVerificationToken(length) {
+  const token = crypto.randomBytes(length).toString("hex");
+  return token;
+}
 class UserService {
   /**
    *
@@ -21,6 +29,42 @@ class UserService {
       profile_photo_slug: null,
     });
     return _.omit(user.toJSON(), ["password", "createdAt", "updatedAt"]);
+  }
+
+  async generateVerificationToken(uid) {
+    const token = generateCryptoVerificationToken(16);
+    await OTPToken.create({ token, uid });
+    return token;
+  }
+
+  async sendVerificationMail(uid) {
+    const user = await this.getUserById(uid);
+    const token = await this.generateVerificationToken(uid);
+    const verificationUrl = `${HOST}/verify_user/${token}`;
+    const compileFunction = pug.compileFile(
+      "./templates/verification_email.pug"
+    );
+    await sendMail(
+      user.email,
+      "Xtreme Tools user verification",
+      compileFunction({ verificationUrl })
+    );
+  }
+
+  async verifyToken(token) {
+    const tokenObj = await OTPToken.findByPk(token);
+    if (!tokenObj) throw new ErrorWithStatus("Token is invalid", 400);
+
+    const user = await this.getUserById(tokenObj.uid);
+    user.set("verified", true);
+    const updatedUser = await user.save();
+    return updatedUser.verified;
+  }
+
+  async getUserById(uid) {
+    const user = await User.findByPk(uid);
+    if (!user) throw new ErrorWithStatus("User not exists", 404);
+    return user;
   }
 
   /**

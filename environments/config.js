@@ -8,4 +8,6 @@ module.exports = {
   DATABASE_USERNAME: process.env.DATABASE_USERNAME || "user",
   DATABASE_PASSWORD: process.env.DATABASE_PASSWORD || "pass",
   JWT_SECRET: process.env.JWT_SECRET || "secret",
+  SYSTEM_GMAIL: process.env.SYSTEM_GMAIL || undefined,
+  SYSTEM_PASSWORD: process.env.SYSTEM_PASSWORD || undefined,
 };

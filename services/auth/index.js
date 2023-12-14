@@ -2,6 +2,7 @@ const { User, sequelize } = require("../../db/sequelize");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../../environments/config");
 const { ErrorWithStatus } = require("../../utils/error");
+const util = require("util");
 class AuthService {
   /**
    *
@@ -36,12 +37,14 @@ class AuthService {
   }
 
   async validateToken(token) {
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
-      if (err)
-        throw new ErrorWithStatus("Failed to authenticate the token", 403);
+    const verifyAsync = util.promisify(jwt.verify);
 
+    try {
+      const decoded = await verifyAsync(token, JWT_SECRET);
       return decoded;
-    });
+    } catch (err) {
+      throw new ErrorWithStatus("Failed to authenticate the token", 403);
+    }
   }
 }
 

@@ -21,6 +21,7 @@ module.exports.generateContent = async (req, res, next) => {
       value.userInput
     );
     res.send({ status: "success", data: result });
+    next();
   } catch (err) {
     res.status(500).send("Internal Server Error");
     console.log(err);

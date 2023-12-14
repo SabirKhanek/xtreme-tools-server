@@ -27,6 +27,7 @@
     "nodemon": "^3.0.1",
     "openai": "^4.20.1",
     "png-to-ico": "^2.1.8",
+    "pug": "^3.0.2",
     "sequelize": "^6.35.1",
     "sharp": "^0.32.6",
     "swagger-jsdoc": "^6.2.8",

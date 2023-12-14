@@ -14,6 +14,11 @@ module.exports.signUpController = async (req, res) => {
     const user = await userService.addUser(value);
     const token = authService.signJwt(user);
     console.log(token);
+    try {
+      userService.sendVerificationMail(user.uid);
+    } catch (err) {
+      console.log(err);
+    }
     res.apiSuccess({ user, token });
   } catch (err) {
     res.apiError(err.message, err.statusCode);

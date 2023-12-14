@@ -9,6 +9,7 @@ exports.validateToken = async function validateJWT(req, res, next) {
 
   const authService = new AuthService();
   const decoded = await authService.validateToken(token);
+  console.log(decoded);
   req.user = decoded;
   next();
 };
