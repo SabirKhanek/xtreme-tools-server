@@ -15,6 +15,7 @@
   "dependencies": {
     "@types/swagger-jsdoc": "^6.0.3",
     "adm-zip": "^0.5.10",
+    "axios": "^1.6.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "jimp": "^0.22.10",

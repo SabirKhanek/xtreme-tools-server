@@ -12,7 +12,7 @@ class ToolsService {
     console.log("Hi");
     const _plan = await SubscriptionPlans.findByPk(plan);
     if (!_plan) throw new ErrorWithStatus("Plan not found", 404);
-    const tool = Tool.findByPk(tool_id);
+    const tool = await Tool.findByPk(tool_id);
     console.log(tool);
     if (!tool) throw new Error(`Tool with toolid ${tool_id} not exists`, 404);
     const quota = ToolQuota.findOne({ where: { plan, tool_id } });

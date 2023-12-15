@@ -5,6 +5,7 @@ const { aiRouter } = require("./tools/ai_tools");
 const { authRouter } = require("./auth");
 const { validateToken } = require("../middlewares/auth");
 const { ToolsService } = require("../services/tools");
+const { SEOTools } = require("./tools/seo_tools");
 
 const router = Router();
 router.get("/", (req, res) => {
@@ -25,6 +26,7 @@ router.get("/tool_usage", validateToken, async (req, res, next) => {
     );
   }
 });
+router.use("/seo", SEOTools);
 router.use("/auth", authRouter);
 router.use("/email-marketing", emailRouter);
 router.use("/web", webTools);

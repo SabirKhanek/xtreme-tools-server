@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
     host: "localhost",
     dialect: "mysql",
     logging: false,
-    sync: { alter: true },
+    sync: { force: true },
   }
 );
 (async () => {

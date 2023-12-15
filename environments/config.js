@@ -10,4 +10,7 @@ module.exports = {
   JWT_SECRET: process.env.JWT_SECRET || "secret",
   SYSTEM_GMAIL: process.env.SYSTEM_GMAIL || undefined,
   SYSTEM_PASSWORD: process.env.SYSTEM_PASSWORD || undefined,
+  RAPID_API_KEY: process.env.RAPID_API_KEY || undefined,
+  NODE_ENV: process.env.NODE_ENV || "development",
+  DEVELOPMENT: process.env.NODE_ENV === "development",
 };
