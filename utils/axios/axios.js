@@ -9,8 +9,12 @@ const axios = new Axios({
   transformRequest: [(data) => JSON.stringify(data)],
   transformResponse: [
     (data) => {
-    //   console.log(data);
-      return JSON.parse(data);
+      //   console.log(data);
+      try {
+        return JSON.parse(data);
+      } catch (err) {
+        return data;
+      }
     },
   ],
 });

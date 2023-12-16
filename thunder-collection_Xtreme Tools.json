@@ -1,0 +1,353 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Xtreme Tools",
+    "dateExported": "2023-12-16T08:37:45.259Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "63ce98a5-fa02-4f79-a5f7-4aa7f378c04b",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2023-12-07T10:25:06.238Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "e6ffd318-cde7-4531-8dbf-d3f5ead836ce",
+            "name": "Tools",
+            "containerId": "",
+            "created": "2023-12-14T02:41:00.419Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "689dcc7c-263a-422d-9b03-56b36129ad33",
+            "name": "AI Tools",
+            "containerId": "e6ffd318-cde7-4531-8dbf-d3f5ead836ce",
+            "created": "2023-12-14T02:41:09.892Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "2528bce3-f31a-4fd8-82b7-911366c99988",
+            "name": "SEO Tools",
+            "containerId": "e6ffd318-cde7-4531-8dbf-d3f5ead836ce",
+            "created": "2023-12-15T00:11:22.638Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "4a2db96c-543f-474a-95ab-5e048dc9e1ea",
+            "name": "Email Tools",
+            "containerId": "e6ffd318-cde7-4531-8dbf-d3f5ead836ce",
+            "created": "2023-12-16T07:07:55.362Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "13ed4ade-6c9d-4665-9d83-2a28ab7195a6",
+            "name": "Web Tools",
+            "containerId": "e6ffd318-cde7-4531-8dbf-d3f5ead836ce",
+            "created": "2023-12-16T08:32:29.586Z",
+            "sortNum": 60000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "4bf3e30a-7470-410b-a2f8-21925f32afda",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "63ce98a5-fa02-4f79-a5f7-4aa7f378c04b",
+            "name": "Sign Up",
+            "url": "/auth/signup",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-12-07T10:19:11.449Z",
+            "modified": "2023-12-07T10:23:42.504Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"email\": \"sabirkhanek66@gmail.com\", \"password\": \"sabirkhan123\", \"first_name\": \"Sabir\", \"last_name\": \"Khan\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "37c5df54-e882-44b3-9b02-9cf777b1f1ea",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "63ce98a5-fa02-4f79-a5f7-4aa7f378c04b",
+            "name": "Sign In",
+            "url": "/auth",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-12-07T10:25:16.010Z",
+            "modified": "2023-12-07T10:36:36.591Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"email\": \"sabirkhanek66@gmail.com\", \"password\": \"sabirkhan123\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "736ee728-c1bd-4358-adce-7967c38b51d2",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "689dcc7c-263a-422d-9b03-56b36129ad33",
+            "name": "Outline Generator",
+            "url": "/ai/generate_outline?userInput=SEO",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-12-14T02:41:29.941Z",
+            "modified": "2023-12-14T02:49:06.820Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmllZCI6ZmFsc2UsInVzZXJfcGxhbiI6ImJhc2ljIiwidWlkIjoxLCJmaXJzdF9uYW1lIjoiU2FiaXIiLCJsYXN0X25hbWUiOiJLaGFuIiwiZW1haWwiOiJzYWJpcmtoYW5lazY2QGdtYWlsLmNvbSIsInByb2ZpbGVfcGhvdG9fc2x1ZyI6bnVsbCwiaWF0IjoxNzAyNTIxOTM1fQ.pjFGIWrKtYVZI8efqnXasdHzkU-h6vZ8kuNOHQ95jf8"
+                }
+            ],
+            "params": [
+                {
+                    "name": "userInput",
+                    "value": "SEO",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "76f7ced9-76c4-4eb8-ac91-bbd5575f2f92",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "e6ffd318-cde7-4531-8dbf-d3f5ead836ce",
+            "name": "Get Tool Usage",
+            "url": "/tool_usage?toolId=outline_generato",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-12-14T03:19:27.493Z",
+            "modified": "2023-12-14T03:21:28.711Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmllZCI6ZmFsc2UsInVzZXJfcGxhbiI6ImJhc2ljIiwidWlkIjoxLCJmaXJzdF9uYW1lIjoiU2FiaXIiLCJsYXN0X25hbWUiOiJLaGFuIiwiZW1haWwiOiJzYWJpcmtoYW5lazY2QGdtYWlsLmNvbSIsInByb2ZpbGVfcGhvdG9fc2x1ZyI6bnVsbCwiaWF0IjoxNzAyNTIxOTM1fQ.pjFGIWrKtYVZI8efqnXasdHzkU-h6vZ8kuNOHQ95jf8"
+                }
+            ],
+            "params": [
+                {
+                    "name": "toolId",
+                    "value": "outline_generato",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "12900e18-3c98-47e9-a943-9cf9d37edf51",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "2528bce3-f31a-4fd8-82b7-911366c99988",
+            "name": "DA/PA Check",
+            "url": "/seo/da_pa",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-12-15T00:12:00.461Z",
+            "modified": "2023-12-16T08:37:09.848Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"target\":\"vconekt.com\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "bdd1c2eb-9c73-4a21-afda-65d4af01911b",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "2528bce3-f31a-4fd8-82b7-911366c99988",
+            "name": "Get Backlinks",
+            "url": "/seo/backlinks",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-12-15T01:23:31.558Z",
+            "modified": "2023-12-16T08:37:17.709Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"domain\": \"vconekt.com\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9c3d8c4f-1000-4de3-997d-212fd17c752a",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "2528bce3-f31a-4fd8-82b7-911366c99988",
+            "name": "Keyword Checker",
+            "url": "/seo/keywords",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-12-15T13:08:38.279Z",
+            "modified": "2023-12-16T08:37:24.814Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"keyword\":\"SEO\", \"country\": \"pk\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "55cc7c77-ca4a-438f-b4dc-e5bfd490a8de",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "4a2db96c-543f-474a-95ab-5e048dc9e1ea",
+            "name": "Email Checker",
+            "url": "/email-marketing/email-check",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-12-16T07:08:07.591Z",
+            "modified": "2023-12-16T07:28:20.211Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"email\": \"sabir@aichangestech.com\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d185860e-6fcf-458f-aeef-e6e0d5a9bf2e",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "2528bce3-f31a-4fd8-82b7-911366c99988",
+            "name": "Get Keywords By Website",
+            "url": "/seo/keywords_by_website",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2023-12-16T07:52:28.154Z",
+            "modified": "2023-12-16T07:53:37.117Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"url\": \"domain.com\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b3140f7b-3224-4cbc-b1f6-39740cffad1a",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "2528bce3-f31a-4fd8-82b7-911366c99988",
+            "name": "People Also Ask For",
+            "url": "/seo/what-people-ask",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2023-12-16T08:17:05.607Z",
+            "modified": "2023-12-16T08:18:07.008Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"keyword\":\"SEO\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "631cbdea-4183-431a-bc89-66219599e67e",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "689dcc7c-263a-422d-9b03-56b36129ad33",
+            "name": "AI Writer",
+            "url": "/ai/write?userInput=SEO",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2023-12-16T08:26:10.350Z",
+            "modified": "2023-12-16T08:27:14.652Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "userInput",
+                    "value": "SEO",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "c45bb475-b15c-4ccd-8823-fef4afeb6ef8",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "689dcc7c-263a-422d-9b03-56b36129ad33",
+            "name": "AI Rewriter",
+            "url": "",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2023-12-16T08:27:51.043Z",
+            "modified": "2023-12-16T08:27:51.043Z",
+            "headers": []
+        },
+        {
+            "_id": "71f1223d-4393-4c8d-9ad9-c504b4a29bbe",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "689dcc7c-263a-422d-9b03-56b36129ad33",
+            "name": "AI Translator",
+            "url": "",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-12-16T08:29:14.134Z",
+            "modified": "2023-12-16T08:29:14.134Z",
+            "headers": []
+        },
+        {
+            "_id": "de783a0e-244d-47d5-a4de-852977e68256",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "4a2db96c-543f-474a-95ab-5e048dc9e1ea",
+            "name": "SMTP Tester",
+            "url": "/email-marketing/test-smtp",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2023-12-16T08:30:27.706Z",
+            "modified": "2023-12-16T08:32:08.354Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"host\": \"smtp.example.com\",\r\n  \"port\": 587,\r\n  \"secure\": \"auto\",\r\n  \"from\": \"your-email@example.com\",\r\n  \"to\": \"recipient@example.com\",\r\n  \"username\": \"your-smtp-username\",\r\n  \"password\": \"your-smtp-password\"\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1e939f92-bdfe-4ee3-85fe-c8f1b98f0d4e",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "13ed4ade-6c9d-4665-9d83-2a28ab7195a6",
+            "name": "Favicon Generator",
+            "url": "/web/favicon_generator?only16=false",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2023-12-16T08:33:03.895Z",
+            "modified": "2023-12-16T08:34:30.156Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "only16",
+                    "value": "false",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "inputImg",
+                        "value": "c:\\Users\\User\\Pictures\\Screenshots\\23.webp"
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ],
+    "settings": {
+        "options": {
+            "baseUrl": "http://localhost:5000/api"
+        }
+    }
+}
