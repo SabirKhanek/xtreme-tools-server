@@ -14,4 +14,8 @@ const SMTPTesterRequestSchema = Joi.object({
   }),
 });
 
-module.exports = { SMTPTesterRequestSchema };
+const EmailCheckerSchema = Joi.object({
+  email: Joi.string().email().required(),
+});
+
+module.exports = { SMTPTesterRequestSchema, EmailCheckerSchema };

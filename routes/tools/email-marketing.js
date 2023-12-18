@@ -1,5 +1,8 @@
 const { Router } = require("express");
-const { testSMTP } = require("../../controllers/email_marketing");
+const {
+  testSMTP,
+  emailCheckerController,
+} = require("../../controllers/email_marketing");
 // var transport = nodemailer.createTransport({
 //   host: "sandbox.smtp.mailtrap.io",
 //   port: 2525,
@@ -137,5 +140,7 @@ router.post("/extract-emails", (req, res) => {
  */
 
 router.post("/test-smtp", testSMTP);
+
+router.post("/email-check", emailCheckerController);
 
 module.exports.emailRouter = router;

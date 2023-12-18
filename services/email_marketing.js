@@ -1,4 +1,6 @@
 const nodemailer = require("nodemailer");
+const { ErrorWithStatus } = require("../utils/error");
+const { axios } = require("../utils/axios/axios");
 
 class EmailMarketingService {
   /**
@@ -27,6 +29,50 @@ class EmailMarketingService {
       return { success: true };
     } catch (err) {
       return { success: false, reason: err };
+    }
+  }
+
+  /**
+   * @param {string} domain 
+   */
+  async emailChecker(domain) {
+    return {
+      valid: true,
+      block: true,
+      disposable: true,
+      domain: "mailinator.com",
+      text: "Disposable e-mail",
+      reason: "Blacklist",
+      mx_host: "mail2.mailinator.com",
+      possible_typo: [],
+      mx_info:
+        "Using MX pointer mail2.mailinator.com from DNS with priority: 1",
+      mx_ip: "45.33.83.75",
+    };
+  }
+
+  /**
+   * @param {string} domain
+   */
+  async RapidEmailChecker(domain) {
+    const url = "https://mailcheck.p.rapidapi.com/";
+
+    try {
+      const response = await axios.get(url, {
+        params: { domain },
+        headers: {
+          ...axios.defaults.headers,
+          "X-RapidAPI-Host": "mailcheck.p.rapidapi.com",
+        },
+      });
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      throw new ErrorWithStatus(
+        "Something went wrong. Possibly couldn't communicate to Email Check service",
+        500
+      );
     }
   }
 }
