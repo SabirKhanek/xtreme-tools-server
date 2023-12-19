@@ -45,7 +45,7 @@ async function testSMTP(req, res) {
 async function emailCheckerController(req, res, next) {
   try {
     const { value, error } = EmailCheckerSchema.validate(req.body);
-    if (error) res.apiError(error.details[0].message, 400);
+    if (error) return res.apiError(error.details[0].message, 400);
     const result = DEVELOPMENT
       ? await service.emailChecker(value.email)
       : await service.RapidEmailChecker(value.email);
