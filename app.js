@@ -4,6 +4,17 @@ const cors = require("cors");
 const swaggerJsDocs = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 const { apiRouter } = require("./routes");
+
+const logFile = fs.createWriteStream(path.join(__dirname, "logfile.txt"), {
+  flags: "a",
+});
+const logStdout = process.stdout;
+
+console.log = function (message) {
+  logFile.write(util.format(message) + "\n");
+  logStdout.write(util.format(message) + "\n");
+};
+
 require("./services/ai_tools");
 const options = {
   definition: {
