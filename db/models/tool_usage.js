@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       uid: { type: DataTypes.INTEGER, primaryKey: true },
       tool_id: { type: DataTypes.STRING, primaryKey: true },
       usage: { type: DataTypes.INTEGER, defaultValue: 0 },
+      date: { type: DataTypes.TINYINT, primaryKey: true },
       month: { type: DataTypes.TINYINT, primaryKey: true },
       year: { type: DataTypes.INTEGER, primaryKey: true },
     },

@@ -17,7 +17,6 @@ OTPToken.belongsTo(User, { foreignKey: "uid" });
 SubscriptionPlans.hasMany(User, { foreignKey: "user_plan" });
 User.belongsTo(SubscriptionPlans, { foreignKey: "user_plan" });
 
-
 SubscriptionPlans.hasMany(ToolQuota, { foreignKey: "plan" });
 ToolQuota.belongsTo(SubscriptionPlans, { foreignKey: "plan" });
 
@@ -54,6 +53,31 @@ const tools = [
     id: "ai_rewriter",
     name: "AI Rewriter",
     quota: [{ plan: "basic", quota: 20 }],
+  },
+  {
+    id: "keywords_research",
+    name: "Keywords Research",
+    quota: [{ plan: "basic", quota: 10 }],
+  },
+  {
+    id: "people_also_ask_tool",
+    name: "People Also Ask Tool",
+    quota: [{ plan: "basic", quota: 10 }],
+  },
+  {
+    id: "backlinks_checker",
+    name: "Backlinks Checker",
+    quota: [{ plan: "basic", quota: 10 }],
+  },
+  {
+    id: "competitors_keyword_checker",
+    name: "Competitors Keyword Research",
+    quota: [{ plan: "basic", quota: 10 }],
+  },
+  {
+    id: "domain_authority_checker",
+    name: "Domain Authority Checker",
+    quota: [{ plan: "basic", quota: 10 }],
   },
 ];
 
@@ -104,7 +128,9 @@ async function seed() {
         }
       }
     }
-  } catch (err) {}
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 // Call the seed function

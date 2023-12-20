@@ -8,12 +8,12 @@ const toolService = new ToolsService();
  */
 exports.trackUsage = async (req, res, next) => {
   try {
-    const toolId = req.method === "GET" ? req.query.toolId : req.body.toolId;
+    const toolId = req.toolId;
     if (!req.user)
       return res.apiError("Login is required to use this tool", 401);
     const toolsUsage = await toolService.getUserToolUsageAndQuota(
       req.user.uid,
-      toolId
+      toolId || toolId
     );
     console.log("Here");
     if (toolsUsage.exceeded) return res.apiError("Usage limit exceeded", 403);
@@ -30,9 +30,9 @@ exports.trackUsage = async (req, res, next) => {
  */
 exports.incrementUsage = async (req, res, next) => {
   try {
-    await toolService.incrementUserToolUsage(
-      req.user.uid,
-      req.method === "GET" ? req.query.toolId : req.body.toolId
+    console.log("toolId");
+    console.log(
+      await toolService.incrementUserToolUsage(req.user.uid, req.toolId)
     );
     next();
   } catch (err) {

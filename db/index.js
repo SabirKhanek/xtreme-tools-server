@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
     dialect: "sqlite",
     host: ":memory:",
     logging: false,
-    sync: { force: true },
+    sync: { alter: true },
   }
 );
 (async () => {

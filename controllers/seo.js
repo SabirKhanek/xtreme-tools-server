@@ -26,6 +26,7 @@ module.exports.DA_PA_Check_Controller = async (req, res, next) => {
         ? "Result is returned by mock service because of development mode"
         : "success"
     );
+    next();
   } catch (err) {
     res.apiError(err.message || "Something went wrong", err.statusCode || 500);
   }
@@ -44,6 +45,7 @@ module.exports.BacklinksCheckerController = async (req, res, next) => {
         ? "Result is returned by mock service because of development mode"
         : "success"
     );
+    next();
   } catch (err) {
     res.apiError(err.message || "Something went wrong", err.statusCode || 500);
   }
@@ -67,6 +69,7 @@ module.exports.KeywordsResearchController = async (req, res, next) => {
         ? "Result is returned by mock service because of development mode"
         : "success"
     );
+    next();
   } catch (err) {
     res.apiError(err.message || "Something went wrong", err.statusCode || 500);
   }
@@ -90,6 +93,7 @@ module.exports.KeywordsByWebResearchController = async (req, res, next) => {
         ? "Result is returned by mock service because of development mode"
         : "success"
     );
+    next();
   } catch (err) {
     res.apiError(err.message || "Something went wrong", err.statusCode || 500);
   }
@@ -113,6 +117,7 @@ module.exports.PeopleAskForController = async (req, res, next) => {
         ? "Result is returned by mock service because of development mode"
         : "success"
     );
+    next();
   } catch (err) {
     res.apiError(err.message || "Something went wrong", err.statusCode || 500);
   }
