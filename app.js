@@ -7,16 +7,24 @@ const { apiRouter } = require("./routes");
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
-const logFile = fs.createWriteStream(path.join(__dirname, "logfile.txt"), {
-  flags: "a",
-});
+const logFilePath = path.join(__dirname, "logfile.txt");
+
+// Check if the log file exists, create it if not
+if (!fs.existsSync(logFilePath)) {
+  fs.writeFileSync(logFilePath, "");
+}
+
+const logFile = fs.createWriteStream(logFilePath, { flags: "a" });
 const logStdout = process.stdout;
 
 console.log = function (message) {
-  logFile.write(util.format(message) + "\n");
-  logStdout.write(util.format(message) + "\n");
+  try {
+    logFile.write(util.format(message) + "\n");
+    logStdout.write(util.format(message) + "\n");
+  } catch (error) {
+    console.error("Error writing to log file:", error.message);
+  }
 };
-
 require("./services/ai_tools");
 const options = {
   definition: {
