@@ -50,7 +50,9 @@ const { UserService } = require("./services/user");
 app.use(standardizeResponse);
 app.use(express.json());
 app.use(cors({ origin: "*" }));
-
+app.get("/test",(req,res)=>{
+  return res.send("API is up")
+})
 app.get("/verify_user/:token", async (req, res, next) => {
   try {
     const token = req.params["token"];
