@@ -53,6 +53,7 @@ router.get(
   validateToken,
   (req, res, next) => {
     req.query.toolId = "outline_generator";
+    req.toolId = "outline_generator";
     next();
   },
   trackUsage,
@@ -108,6 +109,8 @@ router.get(
   validateToken,
   (req, res, next) => {
     req.query.toolId = "ai_writer";
+    req.toolId = "ai_writer";
+
     next();
   },
   trackUsage,
@@ -166,6 +169,8 @@ router.post(
   validateToken,
   (req, res, next) => {
     req.body.toolId = "ai_rewriter";
+    req.toolId = "ai_rewriter";
+
     next();
   },
   trackUsage,
@@ -233,6 +238,8 @@ router.post(
     const { value, error } = AITranslatorSchame.validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     req.body = { userInput: JSON.stringify(value), toolId: "ai_translator" };
+    req.toolId = "ai_translator";
+
     next();
   },
   trackUsage,
