@@ -14,8 +14,8 @@ const sequelize = new Sequelize(
   DATABASE_USERNAME,
   DATABASE_PASSWORD,
   {
-    dialect: "sqlite",
-    host: ":memory:",
+    host: "localhost",
+    dialect: "mysql",
     logging: false,
     sync: { alter: true },
   }
