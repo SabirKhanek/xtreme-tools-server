@@ -10,6 +10,10 @@ const SubscriptionPlans = require("./models/subscription_plans")(
   sequelize,
   DataTypes
 );
+const NewsletterSubscriber = require("./models/newsletter_subscriber")(
+  sequelize,
+  DataTypes
+);
 
 User.hasMany(OTPToken, { foreignKey: "uid" });
 OTPToken.belongsTo(User, { foreignKey: "uid" });
@@ -88,6 +92,7 @@ module.exports = {
   Tool,
   ToolQuota,
   ToolUsage,
+  NewsletterSubscriber,
   sequelize,
 };
 

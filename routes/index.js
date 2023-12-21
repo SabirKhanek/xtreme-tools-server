@@ -6,6 +6,7 @@ const { authRouter } = require("./auth");
 const { validateToken } = require("../middlewares/auth");
 const { ToolsService } = require("../services/tools");
 const { SEOTools } = require("./tools/seo_tools");
+const { newsletterRouter } = require("./newsletter");
 
 const router = Router();
 router.get("/", (req, res) => {
@@ -31,5 +32,6 @@ router.use("/auth", authRouter);
 router.use("/email-marketing", emailRouter);
 router.use("/web", webTools);
 router.use("/ai", aiRouter);
+router.use("/newsletter", newsletterRouter);
 
 module.exports.apiRouter = router;

@@ -19,7 +19,8 @@ const logStdout = process.stdout;
 
 console.log = function (message) {
   try {
-    logFile.write(util.format(message) + "\n");
+    const timestamp = new Date().toISOString();
+    logFile.write(`[${timestamp}] ${util.format(message)}` + "\n");
     logStdout.write(util.format(message) + "\n");
   } catch (error) {
     console.error("Error writing to log file:", error.message);
@@ -50,9 +51,9 @@ const { UserService } = require("./services/user");
 app.use(standardizeResponse);
 app.use(express.json());
 app.use(cors({ origin: "*" }));
-app.get("/test",(req,res)=>{
-  return res.send("API is up")
-})
+app.get("/test", (req, res) => {
+  return res.send("API is up");
+});
 app.get("/verify_user/:token", async (req, res, next) => {
   try {
     const token = req.params["token"];
