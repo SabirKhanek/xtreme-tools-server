@@ -31,9 +31,11 @@ class UserService {
     return _.omit(user.toJSON(), ["password", "createdAt", "updatedAt"]);
   }
 
-  async generateVerificationToken(uid) {
+  async generateVerificationToken(uid, reason) {
     const token = generateCryptoVerificationToken(16);
-    await OTPToken.create({ token, uid });
+    const obj = { token, uid };
+    if (reason) obj.reason = reason;
+    await OTPToken.create(obj);
     return token;
   }
 
@@ -51,6 +53,42 @@ class UserService {
     );
   }
 
+  async initiatePasswordResetRequest(email) {
+    const user = await this.getUserByEmail(email);
+    if (!user)
+      throw new ErrorWithStatus("user with this email is not registered", 400);
+    const token = await this.generateVerificationToken(
+      user.uid,
+      "password_reset"
+    );
+    const resetUrl = `${HOST}/reset_password/${token}`;
+    const compileFunction = pug.compileFile(
+      "./templates/reset_password_template.pug"
+    );
+    await sendMail(
+      user.email,
+      "Xtreme Tools's Account Password Reset",
+      compileFunction({ resetUrl })
+    );
+  }
+
+  async resetPassword(token, newPassword) {
+    const tokenObj = await OTPToken.findByPk(token);
+    if (!tokenObj) throw new ErrorWithStatus("Token is invalid", 400);
+    if (tokenObj.reason !== "password_reset")
+      throw new ErrorWithStatus("Token is not for resetting password", 400);
+    const user = await this.getUserById(tokenObj.uid);
+    user.set("password", newPassword);
+    await user.save();
+    const compileFunction = pug.compileFile("./templates/password_changed.pug");
+    await sendMail(
+      user.email,
+      "Xtreme Tools's account password changed!",
+      compileFunction({})
+    );
+    await OTPToken.destroy({ where: { token } });
+  }
+
   async verifyToken(token) {
     const tokenObj = await OTPToken.findByPk(token);
     if (!tokenObj) throw new ErrorWithStatus("Token is invalid", 400);
@@ -58,6 +96,7 @@ class UserService {
     const user = await this.getUserById(tokenObj.uid);
     user.set("verified", true);
     const updatedUser = await user.save();
+    await OTPToken.destroy({ where: { token } });
     return updatedUser.verified;
   }
 

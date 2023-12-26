@@ -7,6 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     "otp_token",
     {
       token: { type: DataTypes.STRING, primaryKey: true },
+      reason: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: "verfication",
+      },
     },
     {
       tableName: "otp_token",

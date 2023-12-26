@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Xtreme Tools",
-    "dateExported": "2023-12-16T08:37:45.259Z",
+    "dateExported": "2023-12-26T12:57:54.154Z",
     "version": "1.1",
     "folders": [
         {
@@ -84,31 +84,6 @@
                 "raw": "{\"email\": \"sabirkhanek66@gmail.com\", \"password\": \"sabirkhan123\"}",
                 "form": []
             },
-            "tests": []
-        },
-        {
-            "_id": "736ee728-c1bd-4358-adce-7967c38b51d2",
-            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
-            "containerId": "689dcc7c-263a-422d-9b03-56b36129ad33",
-            "name": "Outline Generator",
-            "url": "/ai/generate_outline?userInput=SEO",
-            "method": "GET",
-            "sortNum": 30000,
-            "created": "2023-12-14T02:41:29.941Z",
-            "modified": "2023-12-14T02:49:06.820Z",
-            "headers": [
-                {
-                    "name": "Authorization",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmllZCI6ZmFsc2UsInVzZXJfcGxhbiI6ImJhc2ljIiwidWlkIjoxLCJmaXJzdF9uYW1lIjoiU2FiaXIiLCJsYXN0X25hbWUiOiJLaGFuIiwiZW1haWwiOiJzYWJpcmtoYW5lazY2QGdtYWlsLmNvbSIsInByb2ZpbGVfcGhvdG9fc2x1ZyI6bnVsbCwiaWF0IjoxNzAyNTIxOTM1fQ.pjFGIWrKtYVZI8efqnXasdHzkU-h6vZ8kuNOHQ95jf8"
-                }
-            ],
-            "params": [
-                {
-                    "name": "userInput",
-                    "value": "SEO",
-                    "isPath": false
-                }
-            ],
             "tests": []
         },
         {
@@ -259,8 +234,38 @@
             "method": "GET",
             "sortNum": 120000,
             "created": "2023-12-16T08:26:10.350Z",
-            "modified": "2023-12-16T08:27:14.652Z",
-            "headers": [],
+            "modified": "2023-12-21T07:00:53.891Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmllZCI6ZmFsc2UsInVzZXJfcGxhbiI6ImJhc2ljIiwidWlkIjoxLCJmaXJzdF9uYW1lIjoiU2FiaXIiLCJsYXN0X25hbWUiOiJLaGFuIiwiZW1haWwiOiJzYWJpcmtoYW5lazY2QGdtYWlsLmNvbSIsInByb2ZpbGVfcGhvdG9fc2x1ZyI6bnVsbCwiaWF0IjoxNzAzMTQyMDA1fQ.9y0VKo33Z6EFPOGEZgHMmbx8ZK5NxVRk28wit_OnR7Q"
+                }
+            ],
+            "params": [
+                {
+                    "name": "userInput",
+                    "value": "SEO",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "736ee728-c1bd-4358-adce-7967c38b51d2",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "689dcc7c-263a-422d-9b03-56b36129ad33",
+            "name": "Outline Generator",
+            "url": "/ai/generate_outline?userInput=SEO",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2023-12-14T02:41:29.941Z",
+            "modified": "2023-12-14T02:49:06.820Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmllZCI6ZmFsc2UsInVzZXJfcGxhbiI6ImJhc2ljIiwidWlkIjoxLCJmaXJzdF9uYW1lIjoiU2FiaXIiLCJsYXN0X25hbWUiOiJLaGFuIiwiZW1haWwiOiJzYWJpcmtoYW5lazY2QGdtYWlsLmNvbSIsInByb2ZpbGVfcGhvdG9fc2x1ZyI6bnVsbCwiaWF0IjoxNzAyNTIxOTM1fQ.pjFGIWrKtYVZI8efqnXasdHzkU-h6vZ8kuNOHQ95jf8"
+                }
+            ],
             "params": [
                 {
                     "name": "userInput",
@@ -341,6 +346,63 @@
                         "value": "c:\\Users\\User\\Pictures\\Screenshots\\23.webp"
                     }
                 ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "9fa2bcbc-0fdd-4964-a549-c3d852c5d8e0",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "",
+            "name": "Subscribe to Newsletter",
+            "url": "/newsletter/subscribe",
+            "method": "POST",
+            "sortNum": 180000,
+            "created": "2023-12-21T08:53:50.442Z",
+            "modified": "2023-12-21T08:54:22.298Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"email\":\"sabirkhanek66@gmail.com\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5e5e2876-4cca-4f93-984e-9db4c73d1e33",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "63ce98a5-fa02-4f79-a5f7-4aa7f378c04b",
+            "name": "Reset Password Request",
+            "url": "/auth/reset_password",
+            "method": "POST",
+            "sortNum": 190000,
+            "created": "2023-12-26T12:22:06.258Z",
+            "modified": "2023-12-26T12:23:43.217Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"email\":\"sabirkhanek66@gmail.com\"}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b9c40d1f-f4e2-47cd-ad6f-a3947c12aa8d",
+            "colId": "0fd4e9ac-e511-4328-bb71-a4a92f9c88e6",
+            "containerId": "63ce98a5-fa02-4f79-a5f7-4aa7f378c04b",
+            "name": "Reset New Password",
+            "url": "/auth/reset_new",
+            "method": "POST",
+            "sortNum": 200000,
+            "created": "2023-12-26T12:42:47.510Z",
+            "modified": "2023-12-26T12:49:50.485Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"token\":\"295ffc98022cab459c1ff0aefa90fb8f\",\n  \"newPassword\":\"sabirkhan12345\"\n}",
+                "form": []
             },
             "tests": []
         }

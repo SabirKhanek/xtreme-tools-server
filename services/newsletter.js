@@ -1,26 +1,19 @@
-const { NewsletterSubscriber } = require("../db/sequelize");
 const { ErrorWithStatus } = require("../utils/error");
-const { sendMail } = require("../utils/nodemailer/controllers/sendMail");
-const pug = require("pug");
+const { mailchimp } = require("../utils/mailchimp");
 
 class NewletterService {
   async registerEmail(email) {
-    const mail = await NewsletterSubscriber.findByPk(email);
-    if (mail) {
+    try {
+      await mailchimp.lists.addListMember("0292244051", {
+        email_address: email,
+        status: "subscribed",
+      });
+    } catch (err) {
       throw new ErrorWithStatus(
-        "You are already subscribed to newsletter",
-        400
+        err.response?.body?.title ||
+          "Unknown error while communicating with mailchimp",
+        err.response?.body?.status || 500
       );
-    } else {
-      const compileFunction = pug.compileFile(
-        "./templates/subscribe_to_newsletter.pug"
-      );
-      await sendMail(
-        email,
-        "Newsletter Subsription Confirmation | Xtreme Tools",
-        compileFunction()
-      );
-      return await NewsletterSubscriber.create({ email });
     }
   }
 }
