@@ -13,4 +13,5 @@ module.exports = {
   RAPID_API_KEY: process.env.RAPID_API_KEY || undefined,
   NODE_ENV: process.env.NODE_ENV || "development",
   DEVELOPMENT: process.env.NODE_ENV === "development",
+  MAILCHIMP_KEY: process.env.MAILCHIMP_KEY,
 };

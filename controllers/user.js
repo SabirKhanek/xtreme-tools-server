@@ -1,3 +1,4 @@
+const Joi = require("joi");
 const { signUpSchema, signInSchema } = require("../DTOs/requestDTOs/auth");
 const { AuthService } = require("../services/auth");
 const { UserService } = require("../services/user");
@@ -36,6 +37,41 @@ module.exports.signInController = async (req, res) => {
     const token = await authService.authenticate(value.email, value.password);
     const user = await userService.getUserByEmail(value.email);
     res.apiSuccess({ user, token });
+  } catch (err) {
+    res.apiError(err.message, err.statusCode);
+  }
+};
+
+/**
+ * @param {import('express').Request} req - Express request object.
+ * @param {import('express').Response} res - Express response object.
+ */
+module.exports.resetPasswordController = async (req, res, next) => {
+  try {
+    const { value, error } = Joi.object({
+      email: Joi.string().email().required(),
+    }).validate(req.body);
+    if (error) return res.apiError(error.details[0].message, 400);
+    await userService.initiatePasswordResetRequest(value.email);
+    return res.apiSuccess("verification email sent");
+  } catch (err) {
+    res.apiError(err.message, err.statusCode);
+  }
+};
+
+/**
+ * @param {import('express').Request} req - Express request object.
+ * @param {import('express').Response} res - Express response object.
+ */
+module.exports.resetToNewPasswordController = async (req, res, next) => {
+  try {
+    const { value, error } = Joi.object({
+      token: Joi.string().required(),
+      newPassword: Joi.string().min(7).required(),
+    }).validate(req.body);
+    if (error) return res.apiError(error.details[0].message, 400);
+    await userService.resetPassword(value.token, value.newPassword);
+    return res.apiSuccess("Password was reset successfully");
   } catch (err) {
     res.apiError(err.message, err.statusCode);
   }
