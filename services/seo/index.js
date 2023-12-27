@@ -42,8 +42,8 @@ class SEOTools {
     } catch (err) {
       console.log(err);
       throw new ErrorWithStatus(
-        "Something went wrong. Possibly couldn't communicate to DA/PA check service",
-        500
+        err.message||"Something went wrong. Possibly couldn't communicate to DA/PA check service",
+        err.statusCode||500
       );
     }
   }
@@ -87,8 +87,8 @@ class SEOTools {
     } catch (err) {
       console.log(err);
       throw new ErrorWithStatus(
-        "Something went wrong. Possibly couldn't communicate to Keyword service",
-        500
+        err.message||"Something went wrong. Possibly couldn't communicate to Keyword service",
+        err.statusCode||500
       );
     }
   }
@@ -115,8 +115,9 @@ class SEOTools {
     } catch (err) {
       console.log(err);
       throw new ErrorWithStatus(
-        "Something went wrong. Possibly couldn't communicate to Backlinks service",
-        500
+        err.message ||
+          "Something went wrong. Possibly couldn't communicate to Backlinks service",
+        err.statusCode || 500
       );
     }
   }
@@ -141,8 +142,9 @@ class SEOTools {
     } catch (err) {
       console.log(err);
       throw new ErrorWithStatus(
-        "Something went wrong. Possibly couldn't communicate to Keyword service",
-        500
+        err.message ||
+          "Something went wrong. Possibly couldn't communicate to Keyword service",
+        err.statusCode || 500
       );
     }
   }
@@ -174,8 +176,9 @@ class SEOTools {
     } catch (err) {
       console.log(err);
       throw new ErrorWithStatus(
-        "Something went wrong. Possibly couldn't communicate to Keyword service",
-        500
+        err.message ||
+          "Something went wrong. Possibly couldn't communicate to Keyword service",
+        err.statusCode || 500
       );
     }
   }
@@ -208,8 +211,9 @@ class SEOTools {
     } catch (err) {
       console.log(err);
       throw new ErrorWithStatus(
-        "Something went wrong. Possibly couldn't communicate to service",
-        500
+        err.message ||
+          "Something went wrong. Possibly couldn't communicate to service",
+        err.statusCode || 500
       );
     }
   }
