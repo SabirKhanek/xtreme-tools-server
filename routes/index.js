@@ -7,6 +7,7 @@ const { validateToken } = require("../middlewares/auth");
 const { ToolsService } = require("../services/tools");
 const { SEOTools } = require("./tools/seo_tools");
 const { newsletterRouter } = require("./newsletter");
+const { ACCESS_KEY } = require("../environments/config");
 
 const router = Router();
 router.get("/", (req, res) => {
@@ -25,6 +26,16 @@ router.get("/tool_usage", validateToken, async (req, res, next) => {
       err.message || "Internal server error",
       err.statusCode || 500
     );
+  }
+});
+router.get("/restart/:accessKey", (req, res) => {
+  if (req.params["accessKey"] === ACCESS_KEY) {
+    res.apiSuccess("crashing the server now...");
+    throw new Error(
+      "Restart requested that's why throwing unhandled exception"
+    );
+  } else {
+    res.send("Access key is not correct");
   }
 });
 router.use("/seo", SEOTools);
