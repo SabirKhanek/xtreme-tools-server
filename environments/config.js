@@ -15,4 +15,5 @@ module.exports = {
   DEVELOPMENT: process.env.NODE_ENV === "development",
   MAILCHIMP_KEY: process.env.MAILCHIMP_KEY,
   ACCESS_KEY: process.env.ACCESS_KEY || "admin",
+  SQLITE: process.env.SQLITE === "true",
 };

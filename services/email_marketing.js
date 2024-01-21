@@ -33,21 +33,18 @@ class EmailMarketingService {
   }
 
   /**
-   * @param {string} domain 
+   * @param {string} domain
    */
   async emailChecker(domain) {
     return {
-      valid: true,
-      block: true,
-      disposable: true,
-      domain: "mailinator.com",
-      text: "Disposable e-mail",
-      reason: "Blacklist",
-      mx_host: "mail2.mailinator.com",
-      possible_typo: [],
-      mx_info:
-        "Using MX pointer mail2.mailinator.com from DNS with priority: 1",
-      mx_ip: "45.33.83.75",
+      email: "email@email.com",
+      code: "6",
+      role: true,
+      free_email: true,
+      result: "Invalid",
+      reason: "Bounce, Role",
+      send_transactional: 0,
+      did_you_mean: "",
     };
   }
 
@@ -55,23 +52,30 @@ class EmailMarketingService {
    * @param {string} domain
    */
   async RapidEmailChecker(domain) {
-    const url = "https://mailcheck.p.rapidapi.com/";
+    const url =
+      "https://email-validation24.p.rapidapi.com/email/validate-email";
 
     try {
       const response = await axios.get(url, {
-        params: { domain },
+        params: { user_input_email: domain },
         headers: {
           ...axios.defaults.headers,
-          "X-RapidAPI-Host": "mailcheck.p.rapidapi.com",
+          "X-RapidAPI-Host": "email-validation24.p.rapidapi.com",
         },
       });
-      console.log(response.data);
-      return response.data;
+      if (response.data.result?.validation)
+        return response.data.result.validation;
+      else
+        throw new ErrorWithStatus(
+          response.data.message || "Service didn't responded as expected",
+          500
+        );
     } catch (err) {
       console.log(err);
       throw new ErrorWithStatus(
-        "Something went wrong. Possibly couldn't communicate to Email Check service",
-        500
+        err.message ||
+          "Something went wrong. Possibly couldn't communicate to service",
+        err.statusCode || 500
       );
     }
   }

@@ -7,6 +7,7 @@ const {
   DATABASE_NAME,
   DATABASE_USERNAME,
   DATABASE_PASSWORD,
+  SQLITE,
 } = require("../environments/config");
 
 const sequelize = new Sequelize(
@@ -15,7 +16,7 @@ const sequelize = new Sequelize(
   DATABASE_PASSWORD,
   {
     host: "localhost",
-    dialect: "mysql",
+    dialect: SQLITE ? "sqlite" : "mysql",
     logging: false,
     sync: { alter: true },
   }

@@ -4,3 +4,4 @@ uploads/*
 generated_favicons
 temp-*
 logfile.txt
+tempdb.sqlite
