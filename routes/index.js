@@ -7,8 +7,9 @@ const { validateToken } = require("../middlewares/auth");
 const { ToolsService } = require("../services/tools");
 const { SEOTools } = require("./tools/seo_tools");
 const { newsletterRouter } = require("./newsletter");
-const { ACCESS_KEY } = require("../environments/config");
-
+const { ACCESS_KEY, DEVELOPMENT } = require("../environments/config");
+const { sendMail } = require("../utils/nodemailer/controllers/sendMail");
+const pug = require("pug");
 const router = Router();
 router.get("/", (req, res) => {
   res.send("api working");
@@ -36,6 +37,25 @@ router.get("/restart/:accessKey", (req, res) => {
     );
   } else {
     res.send("Access key is not correct");
+  }
+});
+router.post("/send_contact_message", async (req, res) => {
+  try {
+    const compileFunction = pug.compileFile("./templates/contact_us.pug");
+
+    await sendMail(
+      DEVELOPMENT ? "sabirkhanek66@gmail.com" : "kf7866@gmail.com",
+      "New Message Received | Contact Us - Xtreme Tools",
+      compileFunction({
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        message: req.body.message,
+      })
+    );
+    res.apiSuccess("success");
+  } catch (err) {
+    res.apiError(err.message || "Something went wrong", 500);
   }
 });
 router.use("/seo", SEOTools);
