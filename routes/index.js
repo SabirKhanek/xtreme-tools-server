@@ -32,6 +32,7 @@ router.get("/tool_usage", validateToken, async (req, res, next) => {
 router.get("/restart/:accessKey", (req, res) => {
   if (req.params["accessKey"] === ACCESS_KEY) {
     res.apiSuccess("crashing the server now...");
+    process.exit(1);
     throw new Error(
       "Restart requested that's why throwing unhandled exception"
     );
