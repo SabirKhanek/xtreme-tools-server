@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const util = require("util");
 const logFilePath = path.join(__dirname, "logfile.txt");
-
+require("fs").writeFileSync("PID", process.pid.toString());
 // Check if the log file exists, create it if not
 if (!fs.existsSync(logFilePath)) {
   fs.writeFileSync(logFilePath, "");

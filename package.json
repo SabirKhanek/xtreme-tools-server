@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "nodemon app",
     "build": "",
-    "serve": "node app"
+    "serve": "node app",
+    "sync:db": "node db/sync.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.16",

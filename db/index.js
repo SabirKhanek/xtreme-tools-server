@@ -8,6 +8,8 @@ const {
   DATABASE_USERNAME,
   DATABASE_PASSWORD,
   SQLITE,
+  DB_LOGGING,
+  SYNC_DB,
 } = require("../environments/config");
 
 const sequelize = new Sequelize(
@@ -17,8 +19,8 @@ const sequelize = new Sequelize(
   {
     host: "localhost",
     dialect: SQLITE ? "sqlite" : "mysql",
-    logging: false,
-    sync: { alter: true },
+    logging: DB_LOGGING,
+    sync: { alter: SYNC_DB },
   }
 );
 (async () => {
