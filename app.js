@@ -46,6 +46,7 @@ const options = {
 const swaggerSpec = swaggerJsDocs(options);
 
 const app = express();
+app.use("/", (req, res) => res.send("Hello World!"));
 const standardizeResponse = require("./middlewares/standardizeResponse");
 const { UserService } = require("./services/user");
 app.use(standardizeResponse);
