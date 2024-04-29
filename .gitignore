@@ -6,3 +6,4 @@ temp-*
 logfile.txt
 tempdb.sqlite
 restart.sh
+PID
