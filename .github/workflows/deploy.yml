@@ -4,7 +4,7 @@ name: Trigger Deploy
 # pull request events on the master branch
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "main"]
 
 # Authenticate to the the server via ssh
 # and run our deployment script
