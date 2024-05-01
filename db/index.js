@@ -11,7 +11,7 @@ const {
   DB_LOGGING,
   SYNC_DB,
 } = require("../environments/config");
-
+console.log(SQLITE);
 const sequelize = new Sequelize(
   DATABASE_NAME,
   DATABASE_USERNAME,

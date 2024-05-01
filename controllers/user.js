@@ -20,6 +20,12 @@ module.exports.signUpController = async (req, res) => {
     } catch (err) {
       console.log(err);
     }
+    res.cookie("x_auth", token, {
+      maxAge: Date.now() + 10 * 24 * 60 * 60 * 1000,
+      sameSite: "none",
+      path: "/",
+      secure: true,
+    });
     res.apiSuccess({ user, token });
   } catch (err) {
     res.apiError(err.message, err.statusCode);
@@ -35,6 +41,13 @@ module.exports.signInController = async (req, res) => {
     const { value, error } = signInSchema.validate(req.body);
     if (error) return res.apiError(error.details[0].message, 400);
     const token = await authService.authenticate(value.email, value.password);
+    res.cookie("x_auth", token, {
+      maxAge: Date.now() + 10 * 24 * 60 * 60 * 1000,
+      sameSite: "none",
+      path: "/",
+      secure: true,
+    });
+    res.setHeader("access-control-expose-headers", "Set-Cookie");
     const user = await userService.getUserByEmail(value.email);
     res.apiSuccess({ user, token });
   } catch (err) {

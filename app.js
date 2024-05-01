@@ -47,7 +47,12 @@ const options = {
 const swaggerSpec = swaggerJsDocs(options);
 
 const app = express();
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: ["https://xtreme.tools", "http://localhost:3000"],
+    credentials: true,
+  })
+);
 app.get("/", (req, res) => res.send("Hello World!"));
 const { UserService } = require("./services/user");
 app.use(standardizeResponse);
