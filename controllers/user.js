@@ -25,6 +25,7 @@ module.exports.signUpController = async (req, res) => {
       sameSite: "none",
       path: "/",
       secure: true,
+      domain: "xtreme.tools",
     });
     res.apiSuccess({ user, token });
   } catch (err) {
@@ -46,6 +47,7 @@ module.exports.signInController = async (req, res) => {
       sameSite: "none",
       path: "/",
       secure: true,
+      domain: "xtreme.tools",
     });
     res.setHeader("access-control-expose-headers", "Set-Cookie");
     const user = await userService.getUserByEmail(value.email);
