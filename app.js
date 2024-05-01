@@ -6,6 +6,7 @@ const swaggerUI = require("swagger-ui-express");
 const { apiRouter } = require("./routes");
 const fs = require("fs");
 const path = require("path");
+const standardizeResponse = require("./middlewares/standardizeResponse");
 const util = require("util");
 const logFilePath = path.join(__dirname, "logfile.txt");
 require("fs").writeFileSync("PID", process.pid.toString());
@@ -46,15 +47,12 @@ const options = {
 const swaggerSpec = swaggerJsDocs(options);
 
 const app = express();
-app.use("/", (req, res) => res.send("Hello World!"));
-const standardizeResponse = require("./middlewares/standardizeResponse");
+app.use(cors({ origin: "*" }));
+app.get("/", (req, res) => res.send("Hello World!"));
 const { UserService } = require("./services/user");
 app.use(standardizeResponse);
 app.use(express.json());
-app.use(cors({ origin: "*" }));
-app.get("/test", (req, res) => {
-  return res.send("API is up");
-});
+
 app.get("/verify_user/:token", async (req, res, next) => {
   try {
     const token = req.params["token"];
@@ -69,16 +67,6 @@ app.get("/verify_user/:token", async (req, res, next) => {
 
 app.use("/api", apiRouter);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
-
-app.use(express.static("public"));
-app.get("*", (req, res, next) => {
-  if (req.url.startsWith("/api")) next(); // exclude api routes
-  try {
-    res.sendFile(require("path").join(__dirname, "public", "index.html"));
-  } catch (err) {
-    next(err);
-  }
-});
 
 app.listen(config.PORT, () => {
   console.log(`⚡ Server is live on: ${config.HOST}`);
