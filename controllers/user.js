@@ -24,6 +24,7 @@ module.exports.signUpController = async (req, res) => {
       maxAge: Date.now() + 10 * 24 * 60 * 60 * 1000,
       sameSite: "none",
       path: "/",
+      httpOnly: true,
       secure: true,
       domain: req.hostname,
     });
@@ -46,6 +47,7 @@ module.exports.signInController = async (req, res) => {
       maxAge: Date.now() + 10 * 24 * 60 * 60 * 1000,
       sameSite: "none",
       path: "/",
+      httpOnly: true,
       secure: true,
       domain: req.hostname,
     });
