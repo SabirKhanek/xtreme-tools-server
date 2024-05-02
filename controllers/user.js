@@ -26,7 +26,7 @@ module.exports.signUpController = async (req, res) => {
       path: "/",
       httpOnly: true,
       secure: true,
-      domain: req.hostname,
+      domain: req.hostname === "localhost" ? "localhost" : "xtreme.tools",
     });
     res.apiSuccess({ user, token });
   } catch (err) {
@@ -49,7 +49,7 @@ module.exports.signInController = async (req, res) => {
       path: "/",
       httpOnly: true,
       secure: true,
-      domain: req.hostname,
+      domain: req.hostname === "localhost" ? "localhost" : "xtreme.tools",
     });
     res.setHeader("access-control-expose-headers", "Set-Cookie");
     const user = await userService.getUserByEmail(value.email);
