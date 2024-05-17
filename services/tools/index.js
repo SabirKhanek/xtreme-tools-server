@@ -21,7 +21,7 @@ class ToolsService {
         JOIN subscription_plans sp ON tq.plan = sp.id
         WHERE tq.tool_id = :tool_id
         AND sp.level <= :level
-        ORDER BY sp.level DESC
+        ORDER BY tq.quota DESC
         LIMIT 1`,
       {
         replacements: { tool_id, level: _plan.level },
