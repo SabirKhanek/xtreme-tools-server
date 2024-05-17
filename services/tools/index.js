@@ -1,8 +1,10 @@
+const { Op } = require("sequelize");
 const {
   SubscriptionPlans,
   ToolUsage,
   Tool,
   ToolQuota,
+  sequelize,
 } = require("../../db/sequelize");
 const { ErrorWithStatus } = require("../../utils/error");
 const { UserService } = require("../user");
@@ -13,8 +15,21 @@ class ToolsService {
     if (!_plan) throw new ErrorWithStatus("Plan not found", 404);
     const tool = await Tool.findByPk(tool_id);
     if (!tool) throw new Error(`Tool with toolid ${tool_id} not exists`, 404);
-    const quota = await ToolQuota.findOne({ where: { plan, tool_id } });
-    console.log(plan, tool_id, quota);
+    // let quota = await ToolQuota.findOne({ where: { plan, tool_id } });
+    const quota = await sequelize.query(
+      `SELECT tq.* FROM tool_quota tq
+        JOIN subscription_plans sp ON tq.plan = sp.id
+        WHERE tq.tool_id = :tool_id
+        AND sp.level <= :level
+        ORDER BY sp.level DESC
+        LIMIT 1`,
+      {
+        replacements: { tool_id, level: _plan.level },
+        type: sequelize.QueryTypes.SELECT,
+      }
+    );
+    // console.log(quota);
+
     if (!quota)
       throw new ErrorWithStatus(
         `Quota is not defined for ${tool_id} under ${plan}`,
