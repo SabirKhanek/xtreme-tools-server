@@ -30,12 +30,12 @@ class ToolsService {
     );
     // console.log(quota);
 
-    if (!quota)
+    if (!quota && !quota.at(0))
       throw new ErrorWithStatus(
         `Quota is not defined for ${tool_id} under ${plan}`,
         500
       );
-    else return quota;
+    else return quota.at(0);
   }
 
   async getUserToolUsage(uid, tool_id) {
