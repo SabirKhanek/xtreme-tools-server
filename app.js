@@ -53,6 +53,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(express.static("public"));
 app.get("/", (req, res) => res.send("Hello World!"));
 const { UserService } = require("./services/user");
 app.use(standardizeResponse);
