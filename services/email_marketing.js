@@ -53,7 +53,7 @@ class EmailMarketingService {
    */
   async RapidEmailChecker(domain) {
     const url =
-      "https://email-validation24.p.rapidapi.com/email/validate-email";
+      "https://email-validation24.p.rapidapi.com/email/validate-email-simple";
 
     try {
       const response = await axios.get(url, {
@@ -61,10 +61,11 @@ class EmailMarketingService {
         headers: {
           ...axios.defaults.headers,
           "X-RapidAPI-Host": "email-validation24.p.rapidapi.com",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       });
-      if (response.data.result?.validation)
-        return response.data.result.validation;
+      if (response.data.result) return response.data.result;
       else
         throw new ErrorWithStatus(
           response.data.message || "Service didn't responded as expected",

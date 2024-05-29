@@ -5,6 +5,7 @@ const { ErrorWithStatus } = require("../error");
 const axios = new Axios({
   headers: {
     "X-RapidAPI-Key": RAPID_API_KEY,
+    "x-rapidapi-key": RAPID_API_KEY,
     "Content-Type": "application/json",
   },
   transformRequest: [(data) => JSON.stringify(data)],
@@ -24,7 +25,8 @@ axios.interceptors.response.use(async (res) => {
   if (res.status >= 200 && res.status < 205) {
     return res;
   } else if (res.status >= 400 && res.status < 405) {
-    throw new ErrorWithStatus("Bad request", 400);
+    console.log(res.data);
+    throw new ErrorWithStatus(`Service error: Bad request`, 400);
   }
   {
     await sendMail(
