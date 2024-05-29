@@ -43,11 +43,25 @@ router.get("/restart/:accessKey", (req, res) => {
 router.post("/send_contact_message", async (req, res) => {
   try {
     const compileFunction = pug.compileFile("./templates/contact_us.pug");
+    const compileFunctionReceipt = pug.compileFile(
+      "./templates/contact_us_receipt.pug"
+    );
 
     await sendMail(
       DEVELOPMENT ? "sabirkhanek66@gmail.com" : "kf7866@gmail.com",
       "New Message Received | Contact Us - Xtreme Tools",
       compileFunction({
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        message: req.body.message,
+      })
+    );
+
+    await sendMail(
+      req.body.email,
+      "We received your message - Xtreme Tools",
+      compileFunctionReceipt({
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
