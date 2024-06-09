@@ -13,13 +13,13 @@ module.exports.signUpController = async (req, res) => {
     const { value, error } = signUpSchema.validate(req.body);
     if (error) res.status(400).send(error.details[0].message);
     const user = await userService.addUser(value);
-    const res = await createUserOnUrlShortener(
+    const urlShortResp = await createUserOnUrlShortener(
       value.first_name,
       value.last_name,
       value.email,
       value.password
-    )
-     
+    );
+
     const token = authService.signJwt(user);
 
     try {
@@ -35,7 +35,7 @@ module.exports.signUpController = async (req, res) => {
       secure: true,
       domain: req.hostname === "localhost" ? "localhost" : "xtreme.tools",
     });
-    res.apiSuccess({ user, token, urlshortener: username });
+    res.apiSuccess({ user, token, urlshortener: urlShortResp });
   } catch (err) {
     res.apiError(err.message, err.statusCode);
   }
@@ -148,7 +148,7 @@ async function createUserOnUrlShortener(
   try {
     const response = await fetch(url, options);
     const result = await response.text();
-    return username
+    return username;
   } catch (error) {
     console.error("Error:", error);
   }
