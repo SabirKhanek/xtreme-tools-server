@@ -5,6 +5,7 @@ const crypto = require("crypto");
 const { HOST } = require("../../environments/config");
 const { sendMail } = require("../../utils/nodemailer/controllers/sendMail");
 const pug = require("pug");
+const { genHash } = require("../../utils/hashing");
 function generateCryptoVerificationToken(length) {
   const token = crypto.randomBytes(length).toString("hex");
   return token;
@@ -24,7 +25,7 @@ class UserService {
     const user = await User.create({
       first_name: userObj.first_name,
       last_name: userObj.last_name,
-      password: userObj.password,
+      password: genHash(userObj.password),
       email: userObj.email,
       profile_photo_slug: null,
     });

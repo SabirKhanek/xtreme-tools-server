@@ -36,6 +36,15 @@ ToolUsage.belongsTo(Tool, { foreignKey: "tool_id" });
 const plans = [
   { id: "free", name: "Free Plan" },
   { id: "basic", name: "Basic Plan" },
+  {
+    id: "gold",
+    name: "Gold Plan",
+    original_price: 1000,
+    discounted_price: 1000,
+    features: ["Cool feature 1", "Awesome feature 2"],
+    level: 1,
+    subscription_interval: "monthly",
+  },
 ];
 const tools = [
   {

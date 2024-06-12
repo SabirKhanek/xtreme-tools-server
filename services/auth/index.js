@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../../environments/config");
 const { ErrorWithStatus } = require("../../utils/error");
 const util = require("util");
+const { genHash, verifyHash } = require("../../utils/hashing");
 class AuthService {
   /**
    *
@@ -20,10 +21,8 @@ class AuthService {
       },
     });
     if (!user) throw new ErrorWithStatus("User not found", 401);
-
-    const passwordInDb = user.password;
-    if (password !== passwordInDb)
-      throw new ErrorWithStatus("Password incorrect", 401);
+    const isPassMatch = verifyHash(password, user.password);
+    if (!isPassMatch) throw new ErrorWithStatus("Password incorrect", 401);
 
     if (!JWT_SECRET) throw new CustomError(500, "Private key not set");
     delete user.password;
