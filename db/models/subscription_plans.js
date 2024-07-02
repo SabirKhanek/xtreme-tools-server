@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM("yearly", "monthly"),
         defaultValue: "monthly",
       },
-      additional_metadata: { type: DataTypes.JSON, allowNull: true },
+      additional_meta: { type: DataTypes.JSON, allowNull: true },
     },
     {
       tableName: "subscription_plans",

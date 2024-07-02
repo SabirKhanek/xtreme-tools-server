@@ -5,6 +5,7 @@ const AiGenerateSchema = Joi.object({
     .valid("ai_writer", "outline_generator", "ai_rewriter", "ai_translator")
     .required(),
   userInput: Joi.string().required(),
+  useAI: Joi.string().valid("openai", "claude").default("openai").optional(),
 });
 
 const paraRewriteSchema = Joi.object({

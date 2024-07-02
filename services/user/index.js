@@ -79,7 +79,7 @@ class UserService {
     if (tokenObj.reason !== "password_reset")
       throw new ErrorWithStatus("Token is not for resetting password", 400);
     const user = await this.getUserById(tokenObj.uid);
-    user.set("password", newPassword);
+    user.set("password", genHash(newPassword));
     await user.save();
     const compileFunction = pug.compileFile("./templates/password_changed.pug");
     await sendMail(

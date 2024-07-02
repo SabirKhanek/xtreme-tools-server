@@ -18,9 +18,11 @@ module.exports.generateContent = async (req, res, next) => {
 
     const result = await aiService.generateContent(
       value.toolId,
-      value.userInput
+      value.userInput,
+      req.self_key
     );
-    res.send({ status: "success", data: result });
+    console.log(result);
+    res.send({ status: "success", data: result, skip_increment: req.skip_usage_checks });
     next();
   } catch (err) {
     res.status(500).send("Internal Server Error");

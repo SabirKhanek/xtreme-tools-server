@@ -1,3 +1,4 @@
+const { default: OpenAI } = require("openai");
 const { getAIRewriterPrompt } = require("./ai_rewriter");
 const { getAITranslator } = require("./ai_translator");
 const { getAIWriterPrompt } = require("./ai_writer");
@@ -30,14 +31,26 @@ class AITools {
    * @param {ToolID} toolId
    * @param {string} userInput
    */
-  async generateContent(toolId, userInput) {
+  async generateContent(toolId, userInput, api_key) {
     const instructions = this.generatePrompt(toolId, userInput);
     try {
-      const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: instructions,
-      });
-      return response.choices[0].message.content;
+      if (!api_key) {
+        const response = await openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: instructions,
+        });
+        return response.choices[0].message.content;
+      } else {
+        console.log(`API key provided:  Using ${api_key}`);
+        const openai = new OpenAI({
+          apiKey: api_key,
+        });
+        const response = await openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: instructions,
+        });
+        return response.choices[0].message.content;
+      }
     } catch (err) {
       console.error(err);
       throw new Error(err.message);

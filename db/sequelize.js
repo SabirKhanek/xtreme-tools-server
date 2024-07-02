@@ -1,5 +1,4 @@
 const { sequelize, DataTypes } = require("./");
-
 const User = require("./models/user")(sequelize, DataTypes);
 const OTPToken = require("./models/otp_tokens")(sequelize, DataTypes);
 
@@ -13,6 +12,10 @@ const SubscriptionPlans = require("./models/subscription_plans")(
 const NewsletterSubscriber = require("./models/newsletter_subscriber")(
   sequelize,
   DataTypes
+);
+const Prompts = require("./models/prompts")(sequelize, DataTypes);
+const UserIntegratedApiKeys = require("./models/user_integrated_api_keys")(
+  sequelize
 );
 
 User.hasMany(OTPToken, { foreignKey: "uid" });
@@ -32,6 +35,12 @@ ToolUsage.belongsTo(User, { foreignKey: "uid" });
 
 Tool.hasMany(ToolUsage, { foreignKey: "tool_id" });
 ToolUsage.belongsTo(Tool, { foreignKey: "tool_id" });
+
+Prompts.belongsTo(Tool, { foreignKey: "tool_id" });
+Tool.hasOne(Prompts, { foreignKey: "tool_id" });
+
+UserIntegratedApiKeys.belongsTo(User, { foreignKey: "user_uid" });
+User.hasMany(UserIntegratedApiKeys, { foreignKey: "user_uid" });
 
 const plans = [
   { id: "free", name: "Free Plan" },
@@ -102,6 +111,8 @@ module.exports = {
   ToolQuota,
   ToolUsage,
   NewsletterSubscriber,
+  Prompts,
+  UserIntegratedApiKeys,
   sequelize,
 };
 

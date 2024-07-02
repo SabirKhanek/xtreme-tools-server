@@ -2,7 +2,11 @@ const { Router } = require("express");
 const { generateContent } = require("../../controllers/ai");
 const { AITranslatorSchame } = require("../../DTOs/requestDTOs/ai");
 const { validateToken } = require("../../middlewares/auth");
-const { trackUsage, incrementUsage } = require("../../middlewares/usage");
+const {
+  trackUsage,
+  incrementUsage,
+  isSelfServiced,
+} = require("../../middlewares/usage");
 const router = Router();
 
 /**
@@ -56,6 +60,7 @@ router.get(
     req.toolId = "outline_generator";
     next();
   },
+  isSelfServiced,
   trackUsage,
   generateContent,
   incrementUsage
@@ -113,6 +118,7 @@ router.get(
 
     next();
   },
+  isSelfServiced,
   trackUsage,
   generateContent,
   incrementUsage
@@ -173,6 +179,8 @@ router.post(
 
     next();
   },
+  isSelfServiced,
+
   trackUsage,
   generateContent,
   incrementUsage
@@ -242,6 +250,7 @@ router.post(
 
     next();
   },
+  isSelfServiced,
   trackUsage,
   generateContent,
   incrementUsage

@@ -11,6 +11,7 @@ const {
   DB_LOGGING,
   SYNC_DB,
 } = require("../environments/config");
+console.log(require("../environments/config"));
 console.log(SQLITE);
 const sequelize = new Sequelize(
   DATABASE_NAME,
@@ -28,7 +29,7 @@ const sequelize = new Sequelize(
     await sequelize.authenticate();
     // eslint-disable-next-line no-console
     console.log("Database connected successfully..");
-    await sequelize.sync();
+    // await sequelize.sync();
     return sequelize;
   } catch (error) {
     // eslint-disable-next-line no-console
