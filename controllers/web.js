@@ -71,6 +71,7 @@ async function convertPdf(req, res, next) {
       success: true,
       downloadPath: `${config.HOST}/result_files/${fileName}`,
     });
+    next();
   } catch (err) {
     console.log(err);
     res.status(500).send({ success: false, err });
