@@ -164,4 +164,4 @@ async function seed() {
 }
 
 // Call the seed function
-// seed();
+seed();
