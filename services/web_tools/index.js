@@ -21,6 +21,12 @@ class WebTools {
       throw new Error({ success: false, reason: error });
     }
   }
+
+  async  createConversionJob() {
+    const url =
+      "https://petadata-document-conversion-suite.p.rapidapi.com/SubmitPDFConversionTask";
+    const data = new FormData();
+  }
 }
 
 module.exports = { WebTools };

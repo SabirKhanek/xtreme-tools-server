@@ -101,6 +101,11 @@ const tools = [
     name: "Domain Authority Checker",
     quota: [{ plan: "basic", quota: 10 }],
   },
+  {
+    id: "pdf_converter",
+    name: "PDF Converter",
+    quota: [{ plan: "basic", quota: 3 }],
+  },
 ];
 
 module.exports = {

@@ -17,5 +17,6 @@ module.exports = {
   ACCESS_KEY: process.env.ACCESS_KEY || "admin",
   SQLITE: process.env.SQLITE === "true",
   SYNC_DB: process.env.SYNC_DB === "true",
+  CLOUDMERSIVE: process.env.CLOUDMERSIVE,
   DB_LOGGING: process.env.DB_LOGGING === "true",
 };
