@@ -28,7 +28,10 @@ class UserService {
       password: genHash(userObj.password),
       email: userObj.email,
       profile_photo_slug: null,
+      user_plan: 'basic'
     });
+    console.log(userObj);
+    console.log(userObj.user_plan);
     return _.omit(user.toJSON(), ["password", "createdAt", "updatedAt"]);
   }
 

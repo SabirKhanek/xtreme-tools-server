@@ -9,6 +9,7 @@ const path = require("path");
 const standardizeResponse = require("./middlewares/standardizeResponse");
 const util = require("util");
 const logFilePath = path.join(__dirname, "logfile.txt");
+const { seed } = require("./db/sequelize");
 require("fs").writeFileSync("PID", process.pid.toString());
 // Check if the log file exists, create it if not
 if (!fs.existsSync(logFilePath)) {
@@ -49,7 +50,7 @@ const swaggerSpec = swaggerJsDocs(options);
 const app = express();
 app.use(
   cors({
-    origin: ["https://xtreme.tools", "http://localhost:3000"],
+    origin: ["https://xtreme.tools", "http://localhost:5173"],
     credentials: true,
   })
 );
@@ -74,7 +75,18 @@ app.get("/verify_user/:token", async (req, res, next) => {
 app.use("/api", apiRouter);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-app.listen(config.PORT, () => {
-  console.log(`⚡ Server is live on: ${config.HOST}`);
-  console.log(`📄 Docs: ${config.HOST}/api-docs`);
-});
+async function startServer() {
+  try {
+    await seed();
+    console.log("Database seeded successfully");
+    
+    app.listen(config.PORT, () => {
+      console.log(`⚡ Server is live on: ${config.HOST}`);
+      console.log(`📄 Docs: ${config.HOST}/api-docs`);
+    });
+  } catch (error) {
+    console.error("Error starting server:", error);
+  }
+}
+
+startServer();

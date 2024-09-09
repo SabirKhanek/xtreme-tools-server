@@ -119,6 +119,7 @@ module.exports = {
   Prompts,
   UserIntegratedApiKeys,
   sequelize,
+  
 };
 
 async function seed() {
@@ -162,6 +163,21 @@ async function seed() {
     console.error(err);
   }
 }
+
+module.exports = {
+  User,
+  OTPToken,
+  SubscriptionPlans,
+  Tool,
+  ToolQuota,
+  ToolUsage,
+  NewsletterSubscriber,
+  Prompts,
+  UserIntegratedApiKeys,
+  sequelize,
+  seed
+  
+};
 
 // Call the seed function
 //seed();
