@@ -14,13 +14,12 @@ module.exports.signUpController = async (req, res) => {
     if (error) res.status(400).send(error.details[0].message);
     const user = await userService.addUser(value);
     const user_plan = "basic";
-    console.log(user_plan);
+
     const urlShortResp = await createUserOnUrlShortener(
       value.first_name,
       value.last_name,
       value.email,
-      value.password,
-      user_plan
+      value.password
     );
 
     const token = authService.signJwt(user);

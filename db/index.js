@@ -27,11 +27,12 @@ const sequelize = new Sequelize(
 (async () => {
   try {
     await sequelize.authenticate();
+    // eslint-disable-next-line no-console
     console.log("Database connected successfully..");
-    await sequelize.sync({ force: true }); // This will create all tables
-    console.log("All tables have been created.");
+    // await sequelize.sync();
     return sequelize;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log("Error connecting database", error);
     return null;
   }
